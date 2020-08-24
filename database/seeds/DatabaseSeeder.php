@@ -21,5 +21,8 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(QuestionSeeder::class);
+        $this->call(AnswerSeeder::class);
+
+        factory(App\Poll::class, 5)->create();
     }
 }
