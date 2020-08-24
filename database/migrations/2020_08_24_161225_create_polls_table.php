@@ -16,7 +16,6 @@ class CreatePollsTable extends Migration
         Schema::create('polls', function (Blueprint $table) {
             $table->id();
             $table->string('url');
-            $table->string('email');
             $table->timestamps();
         });
     }

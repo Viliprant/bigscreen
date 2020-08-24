@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePollAnswerTable extends Migration
+class CreateAnswerPollTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePollAnswerTable extends Migration
      */
     public function up()
     {
-        Schema::create('poll_answer', function (Blueprint $table) {
+        Schema::create('answer_poll', function (Blueprint $table) {
             // Foreign Key
             $table->foreignId('poll_id')
             ->nullable()
@@ -34,6 +34,6 @@ class CreatePollAnswerTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('poll_answer');
+        Schema::dropIfExists('answer_poll');
     }
 }
