@@ -7,19 +7,121 @@
 body {
   background-color: #323642;
   color: white;
+  padding-bottom: 1rem;
   font-family: "Poppins", sans-serif;
-  font-size: 10px;
+  font-size: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-header {
+body > header {
+  width: 100%;
   padding: 1rem 0 1rem 1rem;
+  margin-bottom: 1rem;
+  background-color: #191c22;
 }
 
-header img {
+body > header img {
   width: 40%;
+  vertical-align: middle;
+  max-width: 300px;
 }
 
 main {
   padding: 0 1rem;
+}
+
+main p {
+  padding: 1rem 0;
+  text-align: justify;
+}
+
+main #form {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+main #form .question {
+  padding: 1rem;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  background-color: #22262f;
+  box-shadow: 0 0 1px 0 white;
+}
+
+main #form .question + .question {
+  margin-top: 1rem;
+}
+
+main #form .question > * + * {
+  margin-top: 0.4rem;
+}
+
+main #form .question > label {
+  text-align: justify;
+}
+
+main #form .question input[type=text] {
+  box-shadow: 0 0 1px 0 white;
+  border: none;
+  padding: 0.4rem 1rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+}
+
+main #form .question .choix {
+  display: flex;
+  justify-content: space-around;
+}
+
+main #form .question .choix label {
+  text-align: center;
+}
+
+main #form .question .choix > div + div {
+  margin-left: 0.5rem;
+}
+
+main #form .question .choix > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main #form .question .choix input[type=radio] {
+  margin-top: 0.5rem;
+}
+
+main #form #wrapper-submit {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+main #form #wrapper-submit > input[type=submit] {
+  border: none;
+  padding: 0.4rem 1rem;
+  box-shadow: 0 0 1px 0 white;
+  background-color: #22262f;
+  color: white;
+  border-radius: 2px;
+  font-size: 20px;
+}
+
+@media screen and (min-width: 800px) {
+  body > header {
+    padding-left: calc(15% + 1rem);
+  }
+
+  main {
+    width: 70%;
+  }
+
+  input[type=text] {
+    width: 60%;
+  }
 }
 
