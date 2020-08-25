@@ -10,12 +10,21 @@
 .bold{
     font-weight: bold;
 }
+.error{
+    margin-top: 10rem;
+    display: flex;
+    justify-content: flex-end;
+    p{
+        background-color: #c30a0d;
+        box-shadow: 0 0 1px 0 white;
+        padding: 0.5rem 1rem;
+    }
+}
 body{
     background-color: #323642;
     color: white;
     padding-bottom: 1rem;
     font-family: 'Poppins', sans-serif;
-    font-size: 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,7 +79,8 @@ main{
             }
             .choix{
                 display: flex;
-                justify-content: space-around;
+                justify-content: space-evenly;
+                flex-wrap: wrap;
                 label{
                     text-align: center;
                 }
@@ -81,9 +91,12 @@ main{
                     display: flex;
                     flex-direction: column;
                     align-items: center;
+                    flex: 1 1 0px
                 }
                 input[type='radio']{
-                    margin-top: 0.5rem;
+                    margin: 0.5rem 0;
+                    width: 15px;
+                    height: 15px;
                 }
             }
             .response{
@@ -111,11 +124,15 @@ main{
 }
 
 @media screen and (min-width: 800px) {
-    body > header{
-        padding-left: calc(15% + 1rem);
+    body {
+        font-size: 17px;
+        & > header{
+            padding-left: calc(15% + 1rem);
+        }
     }
     main{
         width: 70%;
+        min-width: 800px;
     }
     input[type='text']{
         width: 60%;

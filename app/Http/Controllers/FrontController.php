@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Validator;
 use Illuminate\Http\Request;
 
 use App\Question;
@@ -63,5 +64,38 @@ class FrontController extends Controller
                 'answers' => $pollResponse
                 ]]);
         }
+    }
+
+    public function addPoll(Request $request){
+
+        $requirements = [];
+        for ($i=0; $i < 20; $i++) { 
+            if($i === 0){
+                $requirements["Q$i"] = 'required|email';
+            }
+            else{
+                $requirements["Q$i"] = 'required';
+            }
+        }
+
+        // Validation des champs
+        $validator = Validator::make($request->all(), $requirements);
+        $validator->errors()->add("Q0", "Email déjà utilisé");
+        return redirect()
+                        ->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        if ($validator->fails()) {
+            return redirect()
+                        ->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }
+         
+        return response()->json([
+            'request' => $request->all(),
+            'requirements' => $requirements,
+            'validator->fails' => $validator->fails(),
+        ]);
     }
 }

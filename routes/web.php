@@ -15,3 +15,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'FrontController@index')->name('front_poll');
 Route::get('poll/{url}', 'FrontController@getPoll')->name('get_poll');
+Route::post('poll', 'FrontController@addPoll')->name('add_poll');
