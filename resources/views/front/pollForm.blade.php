@@ -27,7 +27,7 @@ BigScreen - Questionnaire
                             <div class="choix">
                                 @foreach($question['answers'] as $keyAnswer => $answer)
                                     <div>
-                                        <input type="radio" id="{{$keyAnswer . '-' . $question['id']}}" name="Q{{$key}}" value="{{$answer['id']}}" {{ old("Q$key") == $answer['id'] ? 'checked' : '' }}>
+                                        <input type="radio" id="{{$keyAnswer . '-' . $question['id']}}" name="A{{$key}}" value="{{$answer['id']}}" {{ old("Q$key") == $answer['id'] ? 'checked' : '' }}>
                                         <label for="{{$keyAnswer . '-' . $question['id']}}">{{$answer['libelle']}}</label>
                                     </div>
                                 @endforeach

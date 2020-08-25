@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Str;
+
 use App\Question;
 use App\Poll;
 use App\Answer;
@@ -70,13 +72,16 @@ class FrontController extends Controller
     public function addPoll(Request $request){
 
         $requirements = [];
-        for ($i=0; $i < 20; $i++) { 
-            if($i === 0){
-                $requirements["Q$i"] = 'required|email';
+        foreach ($request->all() as $key => $answerValue) {
+            if($key !== '_token'){
+                if($key === "Q0"){
+                    $requirements["$key"] = 'required|email';
+                }
+                else{
+                    $requirements["$key"] = 'required';
+                }
             }
-            else{
-                $requirements["Q$i"] = 'required';
-            }
+            
         }
 
         // Validation des champs
@@ -99,9 +104,33 @@ class FrontController extends Controller
                                 ->withInput();
             }
         }
+
+        // Create Poll
+        $poll = Poll::create([
+            'url' => Str::random(40),
+        ]);
+        $poll->save();
+
+        $arraytest = [];
+        foreach ($request->all() as $key => $answerValue) {
+            if($key !== '_token'){
+                if($key[0] == 'A'){
+                    $idAnswer = $answerValue;
+                    $poll->answers()->attach($idAnswer);
+                }
+                else{
+                    $newAnswer = Answer::create([
+                        'libelle' => $answerValue,
+                    ]);
+                    $newAnswer->question()->associate(intval(substr( $key, 1 )) + 1 );
+                    $newAnswer->save();
+                    $poll->answers()->attach($newAnswer->id);
+                }
+            }
+        }
          
         return response()->json([
-            'request' => $request->all()
+            'poll_url' => $poll->url,
         ]);
     }
 }
