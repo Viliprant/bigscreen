@@ -13,6 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'FrontController@index')->name('front_poll');
+Route::get('poll/{url}', 'FrontController@getPoll')->name('get_poll');
