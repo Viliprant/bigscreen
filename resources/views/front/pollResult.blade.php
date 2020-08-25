@@ -18,7 +18,7 @@ BigScreen - Questionnaire
             @foreach ($poll['answers'] as $key => $answer)
             <section class="question">
                 <header>
-                    <h1>{{"Question " . ($key+1) . "/" . count($answer)}}</h1>    
+                    <h1>{{"Question " . ($key+1) . "/" . count($poll['answers'])}}</h1>    
                 </header>    
                 <p class="text-less">{{$answer['question']['libelle']}}</p>
                 <p class="response">{{$answer['libelle']}}</p>

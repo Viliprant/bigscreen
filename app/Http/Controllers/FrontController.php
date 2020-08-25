@@ -114,7 +114,8 @@ class FrontController extends Controller
         $arraytest = [];
         foreach ($request->all() as $key => $answerValue) {
             if($key !== '_token'){
-                if($key[0] == 'A'){
+                array_push($arraytest, $key);
+                if(substr( $key, 0, 1) == 'A'){
                     $idAnswer = $answerValue;
                     $poll->answers()->attach($idAnswer);
                 }
@@ -129,8 +130,6 @@ class FrontController extends Controller
             }
         }
          
-        return response()->json([
-            'poll_url' => $poll->url,
-        ]);
+        return view('front.pollURL', ['poll_url' => $poll->url]);
     }
 }
