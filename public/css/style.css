@@ -31,7 +31,6 @@ body {
   font-family: "Poppins", sans-serif;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 body > header {
@@ -150,8 +149,7 @@ main #form #wrapper-submit > input[type=submit] {
   }
 
   main {
-    width: 70%;
-    min-width: 800px;
+    padding: 0 calc(15% + 1rem);
   }
 
   input[type=text] {
