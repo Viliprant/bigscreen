@@ -38,10 +38,10 @@ class FrontController extends Controller
             array_push($questionsResponse, $JSONItem);
         }
 
-        // return view('front.index', ['response' => 'test']);
-        return response()->json([
-            'questions' => $questionsResponse
-        ]);
+        return view('front.pollForm', ['questions' => $questionsResponse]);
+        // return response()->json([
+        //     'questions' => $questionsResponse
+        // ]);
     }
 
     public function getPoll(String $url)
