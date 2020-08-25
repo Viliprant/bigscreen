@@ -4,6 +4,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+.text-less{
+    color: #ffffffb0;
+}
+.bold{
+    font-weight: bold;
+}
 body{
     background-color: #323642;
     color: white;
@@ -28,7 +34,7 @@ body{
 
 main{
     padding: 0 1rem;
-    p{
+    p#intro{
         padding: 1rem 0;
         text-align: justify;
     }
@@ -79,6 +85,10 @@ main{
                 input[type='radio']{
                     margin-top: 0.5rem;
                 }
+            }
+            .response{
+                font-weight: bold;
+                font-size: calc(17px);
             }
             
         }

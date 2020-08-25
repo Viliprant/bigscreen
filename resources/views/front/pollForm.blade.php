@@ -11,7 +11,7 @@ BigScreen - Questionnaire
 
     <main>
         <section>
-            <p>Merci de répondre à toutes les questions et de valider le formulaire en bas de page.</p>
+            <p id="intro">Merci de répondre à toutes les questions et de valider le formulaire en bas de page.</p>
         </section>
         
         <section id="form"> <!-- FORM Prochainement ? -->
@@ -19,10 +19,10 @@ BigScreen - Questionnaire
                 <section class="question">
                     <header>
                         <h1>{{"Question " . ($key+1) . "/" . count($questions)}}</h1>    
-                    </header>    
-                    <label for="{{$question['id']}}">{{$question['libelle']}}</label>
+                    </header>
                     @switch($question['type'])
                         @case('A')
+                            <p>{{$question['libelle']}}</p>
                             <div class="choix">
                                 @foreach($question['answers'] as $keyAnswer => $answer)
                                     <div>
@@ -34,10 +34,12 @@ BigScreen - Questionnaire
                             @break
 
                         @case('B')
+                            <label for="{{$question['id']}}">{{$question['libelle']}}</label>
                             <input type="text" id="{{$question['id']}}" name="{{$question['id']}}">
                             @break
 
                         @case('C')
+                            <p>{{$question['libelle']}}</p>
                             <div class="choix">
                                 <div>
                                     <input type="radio" id="1-{{$question['id']}}" name="{{$question['id']}}" value="1">

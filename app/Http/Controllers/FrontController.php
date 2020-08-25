@@ -39,9 +39,6 @@ class FrontController extends Controller
         }
 
         return view('front.pollForm', ['questions' => $questionsResponse]);
-        // return response()->json([
-        //     'questions' => $questionsResponse
-        // ]);
     }
 
     public function getPoll(String $url)
@@ -54,18 +51,17 @@ class FrontController extends Controller
             $pollResponse = [];
             foreach ($poll->answers as $answer) {
                 $answers = [
-                    'id' => $answer->id,
                     'libelle' => $answer->libelle,
                     'question' => [
-                        'id' => $answer->question_id,
                         'libelle' => $answer->question->libelle,
                     ]
                 ];
-                array_push($pollResponse, $answers);
+                array_push($pollResponse,$answers);
             }
-            return response()->json([
-                'poll' => $pollResponse,
-            ]);
+            return view('front.pollResult', ['poll' => [
+                'created_at' => $answer->created_at,
+                'answers' => $pollResponse
+                ]]);
         }
     }
 }
