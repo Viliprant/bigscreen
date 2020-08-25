@@ -27,7 +27,7 @@ BigScreen - Questionnaire
                             <div class="choix">
                                 @foreach($question['answers'] as $keyAnswer => $answer)
                                     <div>
-                                        <input type="radio" id="{{$keyAnswer . '-' . $question['id']}}" name="Q{{$key}}" value="{{$answer['id']}}">
+                                        <input type="radio" id="{{$keyAnswer . '-' . $question['id']}}" name="Q{{$key}}" value="{{$answer['id']}}" {{ old("Q$key") == $answer['id'] ? 'checked' : '' }}>
                                         <label for="{{$keyAnswer . '-' . $question['id']}}">{{$answer['libelle']}}</label>
                                     </div>
                                 @endforeach
@@ -36,30 +36,30 @@ BigScreen - Questionnaire
 
                         @case('B')
                             <label for="{{$question['id']}}">{{$question['libelle']}}</label>
-                            <input type="text" id="{{$question['id']}}" name="Q{{$key}}">
+                            <input type="text" id="{{$question['id']}}" name="Q{{$key}}" value="{{old("Q$key")}}">
                             @break
 
                         @case('C')
                             <p>{{$question['libelle']}}</p>
                             <div class="choix">
                                 <div>
-                                    <input type="radio" id="1-{{$question['id']}}" name="Q{{$key}}" value="1">
+                                    <input type="radio" id="1-{{$question['id']}}" name="Q{{$key}}" value="1" {{ old("Q$key") == 1 ? 'checked' : '' }}>
                                     <label for="1-{{$question['id']}}">1</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="2-{{$question['id']}}" name="Q{{$key}}" value="2">
+                                    <input type="radio" id="2-{{$question['id']}}" name="Q{{$key}}" value="2" {{ old("Q$key") == 2 ? 'checked' : '' }}>
                                     <label for="2-{{$question['id']}}">2</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="3-{{$question['id']}}" name="Q{{$key}}" value="3">
+                                    <input type="radio" id="3-{{$question['id']}}" name="Q{{$key}}" value="3" {{ old("Q$key") == 3 ? 'checked' : '' }}>
                                     <label for="3-{{$question['id']}}">3</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="4-{{$question['id']}}" name="Q{{$key}}" value="4">
+                                    <input type="radio" id="4-{{$question['id']}}" name="Q{{$key}}" value="4" {{ old("Q$key") == 4 ? 'checked' : '' }}>
                                     <label for="4-{{$question['id']}}">4</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="5-{{$question['id']}}" name="Q{{$key}}" value="5">
+                                    <input type="radio" id="5-{{$question['id']}}" name="Q{{$key}}" value="5" {{ old("Q$key") == 5 ? 'checked' : '' }}>
                                     <label for="5-{{$question['id']}}">5</label>
                                 </div>
                             </div>

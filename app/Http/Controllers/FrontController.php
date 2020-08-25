@@ -74,9 +74,9 @@ class FrontController extends Controller
             if($i === 0){
                 $requirements["Q$i"] = 'required|email';
             }
-            // else{
-            //     $requirements["Q$i"] = 'required';
-            // }
+            else{
+                $requirements["Q$i"] = 'required';
+            }
         }
 
         // Validation des champs
