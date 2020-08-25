@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Question;
 use App\Poll;
+use App\Answer;
 
 class FrontController extends Controller
 {
@@ -73,29 +74,34 @@ class FrontController extends Controller
             if($i === 0){
                 $requirements["Q$i"] = 'required|email';
             }
-            else{
-                $requirements["Q$i"] = 'required';
-            }
+            // else{
+            //     $requirements["Q$i"] = 'required';
+            // }
         }
 
         // Validation des champs
         $validator = Validator::make($request->all(), $requirements);
-        $validator->errors()->add("Q0", "Email déjà utilisé");
-        return redirect()
-                        ->back()
-                        ->withErrors($validator)
-                        ->withInput();
+
         if ($validator->fails()) {
             return redirect()
                         ->back()
                         ->withErrors($validator)
                         ->withInput();
         }
+        else{
+            $alreadyUsed = Answer::where([['question_id', 1], ['libelle', $request['Q0']]])->first();
+
+            if($alreadyUsed != null){
+                $validator->errors()->add("Q0", "Email déjà utilisé");
+                return redirect()
+                                ->back()
+                                ->withErrors($validator)
+                                ->withInput();
+            }
+        }
          
         return response()->json([
-            'request' => $request->all(),
-            'requirements' => $requirements,
-            'validator->fails' => $validator->fails(),
+            'request' => $request->all()
         ]);
     }
 }

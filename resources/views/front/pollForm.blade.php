@@ -8,7 +8,7 @@ BigScreen - Questionnaire
     <header>
         <img src="{{asset('img/bigscreen_logo.png')}}" alt="logo bigscreen">
     </header>
-    
+
     <main>
         <section>
             <p id="intro">Merci de répondre à toutes les questions et de valider le formulaire en bas de page.</p>
@@ -74,7 +74,7 @@ BigScreen - Questionnaire
                                 @break
 
                             @case('validation.email')
-                                <p>Email non valdie</p>
+                                <p>Email non valide</p>
                                 @break
 
                             @default
