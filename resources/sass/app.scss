@@ -6,3 +6,52 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+main {
+    height: 100vh;
+    width: 100%;
+    display: grid;
+    place-items: center;
+    font-size: 17px;
+  }
+  
+  .card {
+    width: 40%;
+    max-width: 400px;
+    min-width: 300px;
+    height: 60%;
+  }
+  
+  .card-body{
+    padding: 0 0 4rem 0;
+    display: grid;
+    place-items: center;
+    
+    & > form{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+
+        & > div{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 80%;
+        }
+        label{
+            align-self: flex-start;
+        }
+        input{
+            width: 100%;
+            font-size: 17px;
+        }
+    }
+  }
+  
+  .card img {
+    width: 100%;
+    background-color: #454545;
+    padding: 1.5rem;
+  }
