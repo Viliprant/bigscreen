@@ -11,7 +11,8 @@ const mix = require('laravel-mix');
  |
  */
 
-mix .sass('resources/sass/style.scss', 'public/css')
+mix .react('resources/js/app.js', 'public/js')
+    .sass('resources/sass/style.scss', 'public/css')
     .browserSync({
         proxy: "localhost:8000" // Activation de browserSync pour le livereload depuis l'url localhost:8000
     });

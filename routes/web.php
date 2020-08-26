@@ -20,3 +20,7 @@ Route::post('poll', 'FrontController@addPoll')->name('add_poll');
 Route::get('poll', function(){
     return redirect()->route('front_poll');
 });
+
+Auth::routes();
+
+Route::get('/administration', 'HomeController@index')->name('admin');
