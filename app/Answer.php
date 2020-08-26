@@ -10,6 +10,7 @@ class Answer extends Model
         'libelle',
         'question_id',
     ];
+    public $timestamps = false;
 
     public function question(){
 

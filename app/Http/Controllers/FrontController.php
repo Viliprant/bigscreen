@@ -15,7 +15,7 @@ class FrontController extends Controller
 {
     public function index()
     {
-        $questions = Question::get();
+        $questions = Question::with('answers')->get();
         $questionsResponse = [];
         foreach ($questions as $question) {
             $answers = [];
@@ -53,7 +53,8 @@ class FrontController extends Controller
             abort(404);
         } else {
             $pollResponse = [];
-            foreach ($poll->answers as $answer) {
+            $answers = $poll->answers()->with('question')->orderBy('question_id')->get();
+            foreach ($answers as $answer) {
                 $answers = [
                     'libelle' => $answer->libelle,
                     'question' => [
@@ -63,7 +64,7 @@ class FrontController extends Controller
                 array_push($pollResponse,$answers);
             }
             return view('front.pollResult', ['poll' => [
-                'created_at' => $answer->created_at,
+                'created_at' => $poll->created_at,
                 'answers' => $pollResponse
                 ]]);
         }
@@ -74,14 +75,13 @@ class FrontController extends Controller
         $requirements = [];
         foreach ($request->all() as $key => $answerValue) {
             if($key !== '_token'){
-                if($key === "Q0"){
+                if($key === "Q1"){
                     $requirements["$key"] = 'required|email';
                 }
                 else{
                     $requirements["$key"] = 'required';
                 }
-            }
-            
+            }          
         }
 
         // Validation des champs
@@ -94,10 +94,10 @@ class FrontController extends Controller
                         ->withInput();
         }
         else{
-            $alreadyUsed = Answer::where([['question_id', 1], ['libelle', $request['Q0']]])->first();
+            $alreadyUsed = Answer::where([['question_id', 1], ['libelle', $request['Q1']]])->first();
 
             if($alreadyUsed != null){
-                $validator->errors()->add("Q0", "Email déjà utilisé");
+                $validator->errors()->add("Q1", "Email déjà utilisé");
                 return redirect()
                                 ->back()
                                 ->withErrors($validator)
@@ -111,25 +111,23 @@ class FrontController extends Controller
         ]);
         $poll->save();
 
-        $arraytest = [];
-        foreach ($request->all() as $key => $answerValue) {
-            if($key !== '_token'){
-                array_push($arraytest, $key);
-                if(substr( $key, 0, 1) == 'A'){
-                    $idAnswer = $answerValue;
-                    $poll->answers()->attach($idAnswer);
-                }
-                else{
-                    $newAnswer = Answer::create([
-                        'libelle' => $answerValue,
-                    ]);
-                    $newAnswer->question()->associate(intval(substr( $key, 1 )) + 1 );
-                    $newAnswer->save();
-                    $poll->answers()->attach($newAnswer->id);
-                }
+        $idsAnswerA = [];
+        $Answers = [];
+        foreach (Question::all() as $key => $question) {
+            if($question['type'] === 'A'){
+                array_push( $idsAnswerA, $request["A" . $question['id']]);
+            }
+            else{
+                $newAnswer = Answer::create([
+                    'libelle' => $request["Q" . $question['id']],
+                    'question_id' => $question->id,
+                ]);
+                $newAnswer->save();
+                array_push( $Answers, $newAnswer->id);
             }
         }
-         
+        $poll->answers()->attach( array_merge($idsAnswerA,$Answers));
+
         return view('front.pollURL', ['poll_url' => $poll->url]);
     }
 }

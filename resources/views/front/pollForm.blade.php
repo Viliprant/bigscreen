@@ -27,7 +27,7 @@ BigScreen - Questionnaire
                             <div class="choix">
                                 @foreach($question['answers'] as $keyAnswer => $answer)
                                     <div>
-                                        <input type="radio" id="{{$keyAnswer . '-' . $question['id']}}" name="A{{$key}}" value="{{$answer['id']}}" {{ old("A$key") == $answer['id'] ? 'checked' : '' }}>
+                                        <input type="radio" id="{{$keyAnswer . '-' . $question['id']}}" name="A{{$key + 1}}" value="{{$answer['id']}}" {{ old("A".($key+1)) == $answer['id'] ? 'checked' : '' }}>
                                         <label for="{{$keyAnswer . '-' . $question['id']}}">{{$answer['libelle']}}</label>
                                     </div>
                                 @endforeach
@@ -36,37 +36,37 @@ BigScreen - Questionnaire
 
                         @case('B')
                             <label for="{{$question['id']}}">{{$question['libelle']}}</label>
-                            <input type="text" id="{{$question['id']}}" name="Q{{$key}}" value="{{old("Q$key")}}">
+                            <input type="text" id="{{$question['id']}}" name="Q{{$key + 1}}" value="{{old("Q".($key+1))}}">
                             @break
 
                         @case('C')
                             <p>{{$question['libelle']}}</p>
                             <div class="choix">
                                 <div>
-                                    <input type="radio" id="1-{{$question['id']}}" name="Q{{$key}}" value="1" {{ old("Q$key") == 1 ? 'checked' : '' }}>
+                                    <input type="radio" id="1-{{$question['id']}}" name="Q{{$key + 1}}" value="1" {{ old("Q".($key+1)) == 1 ? 'checked' : '' }}>
                                     <label for="1-{{$question['id']}}">1</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="2-{{$question['id']}}" name="Q{{$key}}" value="2" {{ old("Q$key") == 2 ? 'checked' : '' }}>
+                                    <input type="radio" id="2-{{$question['id']}}" name="Q{{$key + 1}}" value="2" {{ old("Q".($key+1)) == 2 ? 'checked' : '' }}>
                                     <label for="2-{{$question['id']}}">2</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="3-{{$question['id']}}" name="Q{{$key}}" value="3" {{ old("Q$key") == 3 ? 'checked' : '' }}>
+                                    <input type="radio" id="3-{{$question['id']}}" name="Q{{$key + 1}}" value="3" {{ old("Q".($key+1)) == 3 ? 'checked' : '' }}>
                                     <label for="3-{{$question['id']}}">3</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="4-{{$question['id']}}" name="Q{{$key}}" value="4" {{ old("Q$key") == 4 ? 'checked' : '' }}>
+                                    <input type="radio" id="4-{{$question['id']}}" name="Q{{$key + 1}}" value="4" {{ old("Q".($key+1)) == 4 ? 'checked' : '' }}>
                                     <label for="4-{{$question['id']}}">4</label>
                                 </div>
                                 <div>
-                                    <input type="radio" id="5-{{$question['id']}}" name="Q{{$key}}" value="5" {{ old("Q$key") == 5 ? 'checked' : '' }}>
+                                    <input type="radio" id="5-{{$question['id']}}" name="Q{{$key + 1}}" value="5" {{ old("Q".($key+1)) == 5 ? 'checked' : '' }}>
                                     <label for="5-{{$question['id']}}">5</label>
                                 </div>
                             </div>
                             @break
                     @endswitch
                     {{-- DISPLAY ERROR --}}
-                    @error("Q$key")
+                    @error("Q".($key+1))
                     <div class="error">
                         @switch($message)
                             @case('validation.required')
