@@ -41,5 +41,11 @@ body{
     }
     main{
         flex: 1;
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        padding: 1rem;
+        .graph{
+            border: 1px solid black;
+        }
     }
 }

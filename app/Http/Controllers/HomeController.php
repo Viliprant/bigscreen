@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.home');
+        return view('admin.home', ['graphData' => [
+            'test' => 'bla',
+            'test2' => 'bla',
+            'test3' => 'bla',
+        ]]);
     }
 }

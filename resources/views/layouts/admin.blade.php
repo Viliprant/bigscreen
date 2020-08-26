@@ -6,11 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
     <link href="{{asset('css/admin.css')}}" rel="stylesheet">
+    @stack('head')
 </head>
 <body>
     <div id="sidebar">
         <img src="{{asset('img/bigscreen_logo.png')}}" alt="logo bigscreen">
-        <a href="">Accueil</a>
+        <a href="{{route('admin')}}">Accueil</a>
         <a href="">Questionnaire</a>
         <a href="">Réponses</a>
         <div id="logout-wrapper">
