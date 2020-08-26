@@ -36,6 +36,12 @@ body{
         padding: 1rem 0 1rem 1rem;
         margin-bottom: 1rem;
         background-color: #191c22;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        a{
+            text-decoration: none;
+        }
         img{
             width: 40%;
             vertical-align: middle;
@@ -131,6 +137,7 @@ main{
         font-size: 17px;
         & > header{
             padding-left: calc(15% + 1rem);
+            padding-right: calc(15% + 1rem);
         }
     }
     main{
