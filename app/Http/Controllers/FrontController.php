@@ -65,61 +65,53 @@ class FrontController extends Controller
 
     public function addPoll(Request $request){
 
+        $questions = Question::all();
         $requirements = [];
-        foreach ($request->all() as $key => $answerValue) {
-            if($key !== '_token'){
-                if($key === "Q1"){
-                    $requirements["$key"] = 'required|email';
-                }
-                else{
-                    $requirements["$key"] = 'required';
-                }
-            }          
+        foreach ($questions as $key => $answerValue) {
+            $requirements["Q".( $key + 1 )] = "required";
         }
-
+        $requirements["email"] = "required|email";
+        
         // Validation des champs
         $validator = Validator::make($request->all(), $requirements);
 
+        $poll = Poll::where([['email', $request['email']]])->first();
+
+        if($poll == null){
+            $validator->errors()->add("email", "Email non reconnu");
+            return redirect()
+                    ->back()
+                    ->withErrors($validator)
+                    ->withInput();
+        }
+        else{
+            if($poll->status == true){
+                $validator->errors()->add("email", "Formulaire déjà rempli");
+                return redirect()
+                        ->back()
+                        ->withErrors($validator)
+                        ->withInput();
+            }
+        }
         if ($validator->fails()) {
             return redirect()
                         ->back()
                         ->withErrors($validator)
                         ->withInput();
         }
-        else{
-            $alreadyUsed = Answer::where([['question_id', 1], ['libelle', $request['Q1']]])->first();
 
-            if($alreadyUsed != null){
-                $validator->errors()->add("Q1", "Email déjà utilisé");
-                return redirect()
-                                ->back()
-                                ->withErrors($validator)
-                                ->withInput();
-            }
-        }
-
-        // Create Poll
-        $poll = Poll::create([
-            'url' => Str::random(40),
-        ]);
-        $poll->save();
-
-        $idsAnswerA = [];
         $Answers = [];
-        foreach (Question::all() as $key => $question) {
-            if($question['type'] === 'A'){
-                array_push( $idsAnswerA, $request["A" . $question['id']]);
-            }
-            else{
-                $newAnswer = Answer::create([
-                    'libelle' => $request["Q" . $question['id']],
-                    'question_id' => $question->id,
-                ]);
-                $newAnswer->save();
-                array_push( $Answers, $newAnswer->id);
-            }
+        foreach ($questions as $key => $question) {
+            $newAnswer = Answer::create([
+                'libelle' => $request["Q" . $question['id']],
+                'question_id' => $question->id,
+            ]);
+            $newAnswer->save();
+            array_push( $Answers, $newAnswer->id);
         }
-        $poll->answers()->attach( array_merge($idsAnswerA,$Answers));
+        $poll->answers()->attach( array_merge($Answers));
+        $poll->status = true;
+        $poll->save();
 
         return view('front.pollURL', ['poll_url' => $poll->url]);
     }
