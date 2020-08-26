@@ -11,6 +11,7 @@ body {
   color: white;
   font-family: "Poppins", sans-serif;
   min-height: 100%;
+  font-size: 17px;
 }
 
 body a {
@@ -19,9 +20,10 @@ body a {
 }
 
 body #sidebar {
+  font-size: 20px;
   width: 30%;
   min-width: 200px;
-  padding-top: 30%;
+  max-width: 300px;
   height: 100vh;
   background-color: #474c55;
   display: flex;
@@ -37,6 +39,7 @@ body #sidebar > * + * {
 }
 
 body #sidebar img {
+  margin-top: 50%;
   width: 80%;
   margin-bottom: 1rem;
 }
