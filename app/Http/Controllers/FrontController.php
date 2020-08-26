@@ -18,19 +18,12 @@ class FrontController extends Controller
         $questions = Question::with('answers')->get();
         $questionsResponse = [];
         foreach ($questions as $question) {
-            $answers = [];
             if ($question->type === 'A') {
-                foreach ($question->answers as $answer) {
-                    array_push($answers, [
-                        'id' => $answer->id,
-                        'libelle' => $answer->libelle,
-                    ]);
-                }
                 $JSONItem = [
                     'id' => $question->id,
                     'libelle' => $question->libelle,
                     'type' => $question->type,
-                    'answers' => $answers,
+                    'choices' => json_decode($question->choices),
                 ];
             } else {
                 $JSONItem = [
@@ -41,13 +34,12 @@ class FrontController extends Controller
             }
             array_push($questionsResponse, $JSONItem);
         }
-
         return view('front.pollForm', ['questions' => $questionsResponse]);
     }
 
     public function getPoll(String $url)
     {
-        $poll = Poll::where('url', $url)->first();
+        $poll = Poll::where([['url', $url], ['status', true]])->first();
 
         if ($poll == null) {
             abort(404);
@@ -65,8 +57,9 @@ class FrontController extends Controller
             }
             return view('front.pollResult', ['poll' => [
                 'created_at' => $poll->created_at,
+                'email' => $poll->email,
                 'answers' => $pollResponse
-                ]]);
+            ]]);
         }
     }
 
