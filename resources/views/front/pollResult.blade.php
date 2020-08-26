@@ -15,10 +15,18 @@ BigScreen - Questionnaire
         </section>
         
         <section id="form">
+            <section class="question">
+                <header>
+                    <h1>{{"Question 1/" . (count($poll['answers'])+1)}}</h1>    
+                </header>    
+                <p class="text-less">Votre adresse mail</p>
+                <p class="response">{{$poll['email']}}</p>
+                
+            </section>
             @foreach ($poll['answers'] as $key => $answer)
             <section class="question">
                 <header>
-                    <h1>{{"Question " . ($key+1) . "/" . count($poll['answers'])}}</h1>    
+                    <h1>{{"Question " . ($key+2) . "/" . (count($poll['answers'])+1)}}</h1>    
                 </header>    
                 <p class="text-less">{{$answer['question']['libelle']}}</p>
                 <p class="response">{{$answer['libelle']}}</p>
