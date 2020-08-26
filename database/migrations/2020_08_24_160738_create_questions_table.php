@@ -17,6 +17,7 @@ class CreateQuestionsTable extends Migration
             $table->id();
             $table->string('libelle');
             $table->enum('type', ['A', 'B', 'C']);
+            $table->string('choices')->nullable(); //JSON
             $table->timestamps();
         });
     }

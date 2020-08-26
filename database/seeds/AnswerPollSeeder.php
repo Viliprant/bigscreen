@@ -11,33 +11,27 @@ class AnswerPollSeeder extends Seeder
      */
     public function run()
     {
+        factory(App\Poll::class, 5)->create(); // création sans réponses
         factory(App\Poll::class, 5)->create()->each(function($poll){
             $faker = \Faker\Factory::create();
             $questions = App\Question::all();
 
             foreach ($questions as $key => $question) {
-                $answers = $question->answers;
                 switch ($question->type) {
                     case 'A':
-                        $indexAnswerRandom = rand(0, count($answers) - 1);
-                        $poll->answers()->attach($answers[$indexAnswerRandom]->id);
+                        $choices = json_decode($question->choices);
+                        $libelle = $choices[rand(0, count($choices) - 1)];
+                        $newAnswer = App\Answer::create([
+                            'libelle' => $libelle,
+                            'question_id' => $question->id
+                        ]);
                         break;
                     case 'B':
-                        if($key === 0){
-                            $email = $faker->unique()->safeEmail;
-                            $newAnswer = App\Answer::create([
-                                'libelle' => $email,
-                                'question_id' => $question->id
-                            ]);
-                        }
-                        else{
-                            $randomAnswer = $faker->sentence($nbWords = 6, $variableNbWords = true);
-                            $newAnswer = App\Answer::create([
-                                'libelle' => $randomAnswer,
-                                'question_id' => $question->id
-                            ]);
-                        }
-                        $poll->answers()->attach($newAnswer->id);
+                        $randomAnswer = $faker->sentence($nbWords = 6, $variableNbWords = true);
+                        $newAnswer = App\Answer::create([
+                            'libelle' => $randomAnswer,
+                            'question_id' => $question->id
+                        ]);
                         break;
                     case 'C':
                         $randomNumber = rand(1, 5);
@@ -45,12 +39,16 @@ class AnswerPollSeeder extends Seeder
                             'libelle' => $randomNumber,
                             'question_id' => $question->id
                         ]);
-                        $poll->answers()->attach($newAnswer->id);
                         break;
                     default:
                         break;
                 }
+                $poll->answers()->attach($newAnswer->id);
             }
+
+            // On valide le poll
+            $poll->status = true;
+            $poll->save();
         });
         
     }

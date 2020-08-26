@@ -21,7 +21,7 @@ BigScreen - Administration
     </header>
 
     <main>
-
+        
     </main>
 
 @endsection
