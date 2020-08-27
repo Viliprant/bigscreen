@@ -10920,7 +10920,7 @@ main {
 }
 
 .card-body {
-  padding: 0 0 4rem 0;
+  padding: 0 0 2rem 0;
   display: grid;
   place-items: center;
 }
@@ -10953,5 +10953,6 @@ main {
   width: 100%;
   background-color: #454545;
   padding: 1.5rem;
+  margin-bottom: 2rem;
 }
 
