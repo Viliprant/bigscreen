@@ -102,7 +102,9 @@ BigScreen - Questionnaire
                             @case('validation.email')
                                 <p>Email non valide</p>
                                 @break
-
+                            @case('validation.max.string')
+                                <p>255 caractères max</p>
+                                @break
                             @default
                                 <p>{{$message}}</p>
                         @endswitch

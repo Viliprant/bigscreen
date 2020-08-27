@@ -68,7 +68,7 @@ class FrontController extends Controller
         $questions = Question::all();
         $requirements = [];
         foreach ($questions as $key => $answerValue) {
-            $requirements["Q".( $key + 1 )] = "required";
+            $requirements["Q".( $key + 1 )] = "required|max:255";
         }
         $requirements["email"] = "required|email";
         

@@ -8,7 +8,7 @@ use App\Question;
 use App\Answer;
 use App\Poll;
 
-class HomeController extends Controller
+class AdminController extends Controller
 {
     /**
      * Create a new controller instance.

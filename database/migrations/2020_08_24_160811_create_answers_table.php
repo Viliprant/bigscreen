@@ -15,7 +15,7 @@ class CreateAnswersTable extends Migration
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
+            $table->string('libelle', 255);
 
             // Foreign Key
             $table->foreignId('question_id')

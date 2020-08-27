@@ -23,6 +23,6 @@ Route::get('poll', function(){
 
 Auth::routes();
 
-Route::get('/administration', 'HomeController@index')->name('admin');
-Route::get('/administration/questions', 'HomeController@getQuestions')->name('admin_questions');
-Route::get('/administration/answers', 'HomeController@getAnswers')->name('admin_answers');
+Route::get('/administration', 'AdminController@index')->name('admin');
+Route::get('/administration/questions', 'AdminController@getQuestions')->name('admin_questions');
+Route::get('/administration/answers', 'AdminController@getAnswers')->name('admin_answers');
