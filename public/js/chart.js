@@ -37485,6 +37485,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_0__);
 // console.log(graphData);
 
+console.log(graphData[3]);
 var pie6 = document.getElementById('pie-6').getContext('2d');
 var pie7 = document.getElementById('pie-7').getContext('2d');
 var pie10 = document.getElementById('pie-10').getContext('2d');
@@ -37514,89 +37515,113 @@ var getRandomColor = function getRandomColor(number) {
   return returnedColor;
 };
 
+var transformDataToChartData = function transformDataToChartData(data) {
+  var dataCount = [];
+  var dataLibelle = [];
+  data.stats.forEach(function (statChoice) {
+    dataLibelle.push(statChoice.libelle);
+    dataCount.push(statChoice.count);
+  });
+  return {
+    datasets: [{
+      data: dataCount,
+      backgroundColor: data.type === 'radar' ? getRandomColor(1) : getRandomColor(data.stats.length),
+      label: data.label
+    }],
+    labels: dataLibelle
+  };
+};
+
 var pieChart6 = new chart_js__WEBPACK_IMPORTED_MODULE_0___default.a(pie6, {
-  type: 'pie',
+  type: graphData[0].type,
   options: {
+    legend: {
+      labels: {
+        // This more specific font property overrides the global property
+        fontColor: 'white'
+      }
+    },
     title: {
       display: true,
-      text: 'Chart.js Radar Chart',
+      text: graphData[0].libelle,
       color: 'white',
       fontSize: '17',
       fontColor: 'white'
     }
   },
-  data: {
-    datasets: [{
-      data: [10, 20, 30],
-      backgroundColor: getRandomColor(3)
-    }],
-    labels: ['Red', 'Yellow', 'Blue']
-  }
+  data: transformDataToChartData(graphData[0])
 });
 var pieChart7 = new chart_js__WEBPACK_IMPORTED_MODULE_0___default.a(pie7, {
-  type: 'pie',
+  type: graphData[1].type,
   options: {
+    legend: {
+      labels: {
+        // This more specific font property overrides the global property
+        fontColor: 'white'
+      }
+    },
     title: {
       display: true,
-      text: 'Chart.js Radar Chart',
+      text: graphData[1].libelle,
       color: 'white',
       fontSize: '17',
       fontColor: 'white'
     }
   },
-  data: {
-    datasets: [{
-      data: [10, 20, 30],
-      backgroundColor: getRandomColor(3)
-    }],
-    labels: ['Red', 'Yellow', 'Blue']
-  }
+  data: transformDataToChartData(graphData[1])
 });
 var pieChart10 = new chart_js__WEBPACK_IMPORTED_MODULE_0___default.a(pie10, {
-  type: 'pie',
+  type: graphData[2].type,
   options: {
+    legend: {
+      labels: {
+        // This more specific font property overrides the global property
+        fontColor: 'white'
+      }
+    },
     title: {
       display: true,
-      text: 'Chart.js Radar Chart',
+      text: graphData[2].libelle,
       color: 'white',
       fontSize: '17',
       fontColor: 'white'
     }
   },
-  data: {
-    datasets: [{
-      data: [10, 20, 30],
-      backgroundColor: getRandomColor(3)
-    }],
-    labels: ['Red', 'Yellow', 'Blue']
-  }
+  data: transformDataToChartData(graphData[2])
 });
 var radarChart = new chart_js__WEBPACK_IMPORTED_MODULE_0___default.a(radar, {
-  type: 'radar',
+  type: graphData[3].type,
   options: {
+    legend: {
+      labels: {
+        fontColor: 'white'
+      }
+    },
     title: {
       display: true,
-      text: 'Chart.js Radar Chart',
+      text: graphData[3].libelle,
       color: 'white',
       fontSize: '17',
       fontColor: 'white'
     },
     scale: {
+      gridLines: {
+        color: 'rgba(255, 255, 255, .4)',
+        fontColor: 'white'
+      },
       ticks: {
-        backgroundColor: 'red',
         showLabelBackdrop: false,
-        stepSize: 5
+        min: 0,
+        max: 5,
+        stepSize: 1,
+        fontColor: 'white'
+      },
+      pointLabels: {
+        fontColor: 'white'
       }
     }
   },
-  data: {
-    datasets: [{
-      data: [10, 20, 30],
-      label: 'test',
-      backgroundColor: getRandomColor(1)
-    }],
-    labels: ['Red', 'Yellow', 'Blue']
-  }
+  data: transformDataToChartData(graphData[3])
 });
 
 /***/ }),

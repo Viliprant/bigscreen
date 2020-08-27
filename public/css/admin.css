@@ -54,13 +54,9 @@ body main {
 }
 
 body main .graph {
-  border: 1px solid black;
+  border: 1px solid white;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-body main .graph > canvas {
-  height: 100%;
 }
 

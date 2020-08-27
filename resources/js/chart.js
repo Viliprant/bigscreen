@@ -1,6 +1,8 @@
 // console.log(graphData);
 import Chart from 'chart.js';
 
+console.log(graphData[3])
+
 const pie6 = document.getElementById('pie-6').getContext('2d')
 const pie7 = document.getElementById('pie-7').getContext('2d')
 const pie10 = document.getElementById('pie-10').getContext('2d')
@@ -33,107 +35,115 @@ const getRandomColor = (number) => {
     return returnedColor
 }
 
+const transformDataToChartData = (data) => {
+    const dataCount = []
+    const dataLibelle = []
+    data.stats.forEach(statChoice => {
+        dataLibelle.push(statChoice.libelle)
+        dataCount.push(statChoice.count)
+    });
+    return {
+        datasets: [{
+            data: dataCount,
+            backgroundColor: data.type === 'radar' ? getRandomColor(1) : getRandomColor(data.stats.length),
+            label: data.label,
+        }],
+        labels: dataLibelle,
+    }
+}
+
 const pieChart6 = new Chart(
     pie6, {
-    type: 'pie',
+    type: graphData[0].type,
     options: {
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'white'
+            },
+        },
         title: {
             display: true,
-            text: 'Chart.js Radar Chart',
+            text: graphData[0].libelle,
             color: 'white',
             fontSize: '17',
             fontColor: 'white'
         },
     },
-    data:{
-        datasets: [{
-            data: [10, 20, 30],
-            backgroundColor: getRandomColor(3),
-        }],
-        labels: [
-            'Red',
-            'Yellow',
-            'Blue'
-        ],
-    }
+    data: transformDataToChartData(graphData[0]),
 });
 const pieChart7 = new Chart(
     pie7, {
-    type: 'pie',
+    type: graphData[1].type,
     options: {
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'white'
+            },
+        },
         title: {
             display: true,
-            text: 'Chart.js Radar Chart',
+            text: graphData[1].libelle,
             color: 'white',
             fontSize: '17',
             fontColor: 'white'
         },
     },
-    data: {
-        datasets: [{
-            data: [10, 20, 30],
-            backgroundColor: getRandomColor(3),
-        }],
-        labels: [
-            'Red',
-            'Yellow',
-            'Blue'
-        ],
-    }
+    data: transformDataToChartData(graphData[1]),
 });
 const pieChart10 = new Chart(
     pie10, {
-    type: 'pie',
+    type: graphData[2].type,
     options: {
+        legend: {
+            labels: {
+                // This more specific font property overrides the global property
+                fontColor: 'white'
+            },
+        },
         title: {
             display: true,
-            text: 'Chart.js Radar Chart',
+            text: graphData[2].libelle,
             color: 'white',
             fontSize: '17',
             fontColor: 'white'
         },
     },
-    data: {
-        datasets: [{
-            data: [10, 20, 30],
-            backgroundColor: getRandomColor(3),
-        }],
-        labels: [
-            'Red',
-            'Yellow',
-            'Blue'
-        ],
-    }
+    data: transformDataToChartData(graphData[2]),
 });
 const radarChart = new Chart(
     radar, {
-    type: 'radar',
+    type: graphData[3].type,
     options: {
+        legend: {
+            labels: {
+                fontColor: 'white'
+            },
+        },
         title: {
             display: true,
-            text: 'Chart.js Radar Chart',
+            text: graphData[3].libelle,
             color: 'white',
             fontSize: '17',
             fontColor: 'white'
         },
         scale: {
-            ticks: {
-                backgroundColor: 'red',
-                showLabelBackdrop: false,
-                stepSize: 5
+            gridLines: {
+                color: 'rgba(255, 255, 255, .4)',
+                fontColor: 'white',
             },
+            ticks: {
+                showLabelBackdrop: false,
+                min: 0,
+                max: 5,
+                stepSize: 1,
+                fontColor: 'white',
+            },
+            pointLabels: {
+                fontColor: 'white'
+            }
         },
     },
-    data: {
-        datasets: [{
-            data: [10, 20, 30],
-            label: 'test',
-            backgroundColor: getRandomColor(1),
-        }],
-        labels: [
-            'Red',
-            'Yellow',
-            'Blue'
-        ]
-    }
+    data: transformDataToChartData(graphData[3]),
 });
