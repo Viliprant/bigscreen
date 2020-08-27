@@ -14,7 +14,7 @@ BigScreen - Administration
 
 @section('content')
     <main>
-        <div>
+        <div id="graphs">
             <div class="graph">
                 <canvas id="pie-6" ></canvas>
             </div>

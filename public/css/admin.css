@@ -52,14 +52,14 @@ body main {
   display: flex;
 }
 
-body main > div {
+body main > #graphs {
   flex: 1;
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 50%);
 }
 
-body main > div .graph {
+body main > #graphs .graph {
   border: 1px solid white;
   display: flex;
   align-items: center;
@@ -86,6 +86,21 @@ body main table td {
 }
 
 body main table td.label {
-  text-align: left;
+  text-align: justify;
+}
+
+body main #polls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+body main #polls table {
+  width: 80%;
+}
+
+body main #polls table + table {
+  margin-top: 5rem;
 }
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Question;
 use App\Answer;
+use App\Poll;
 
 class HomeController extends Controller
 {
@@ -119,6 +120,25 @@ class HomeController extends Controller
     }
 
     public function getAnswers(){
-        return view('admin.answers', []);
+        $pollsData = [];
+        $polls = Poll::with('answers')->where('status', true)->get();
+        foreach ($polls as $poll) {
+            $pollData = [];
+            array_push($pollData, [
+                'question' => 'Votre adresse mail',
+                'libelle' => $poll->email,
+                'nth' => 1,
+            ]);
+            foreach ($poll->answers()->with('question')->get() as $answer) {
+                array_push($pollData, [
+                    'question' => $answer->question->libelle,
+                    'libelle' => $answer->libelle,
+                    'nth' => ($answer->question->id) + 1,
+                ]);
+            }
+            array_push($pollsData, ['answers' => $pollData]);
+        }
+
+        return view('admin.answers', ['pollsData' => $pollsData]);
     }
 }

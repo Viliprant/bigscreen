@@ -10,7 +10,7 @@ BigScreen - Administration
         <div id="questions">
             <table>
                 <thead>
-                    <th>Numéro</th>
+                    <th>Q°</th>
                     <th>Libellé</th>
                     <th>Type</th>
                 </thead>
