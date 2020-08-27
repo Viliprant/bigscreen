@@ -61,6 +61,19 @@ body{
             width: 100%;
             display: flex;
             justify-content: center;
+            align-items: center;
+        }
+
+        table{
+            border-collapse: collapse;
+            th,tr,td{
+                border: 1px solid white;
+                padding: 0.4rem;
+                text-align: center;
+            }
+            td.label{
+                text-align: left;
+            }
         }
     }
 }

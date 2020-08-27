@@ -70,5 +70,22 @@ body main #questions {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+body main table {
+  border-collapse: collapse;
+}
+
+body main table th,
+body main table tr,
+body main table td {
+  border: 1px solid white;
+  padding: 0.4rem;
+  text-align: center;
+}
+
+body main table td.label {
+  text-align: left;
 }
 

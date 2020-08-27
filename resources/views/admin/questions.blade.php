@@ -18,7 +18,7 @@ BigScreen - Administration
                     @foreach ($questions as $question)
                         <tr>
                             <td>{{$question['nth']}}</td>
-                            <td>{{$question['libelle']}}</td>
+                            <td class="label">{{$question['libelle']}}</td>
                             <td>{{$question['type']}}</td>
                         </tr>
                     @endforeach
