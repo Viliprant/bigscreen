@@ -37485,7 +37485,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_0__);
 // console.log(graphData);
 
-console.log(graphData[3]);
 var pie6 = document.getElementById('pie-6').getContext('2d');
 var pie7 = document.getElementById('pie-7').getContext('2d');
 var pie10 = document.getElementById('pie-10').getContext('2d');

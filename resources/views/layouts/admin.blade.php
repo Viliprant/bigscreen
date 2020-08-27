@@ -12,8 +12,8 @@
     <div id="sidebar">
         <img src="{{asset('img/bigscreen_logo.png')}}" alt="logo bigscreen">
         <a href="{{route('admin')}}">Accueil</a>
-        <a href="">Questionnaire</a>
-        <a href="">Réponses</a>
+        <a href="{{route('admin_questions')}}">Questionnaire</a>
+        <a href="{{route('admin_answers')}}">Réponses</a>
         <div id="logout-wrapper">
             <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();

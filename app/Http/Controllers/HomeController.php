@@ -99,4 +99,26 @@ class HomeController extends Controller
             'type' => 'radar'
         ];
     }
+
+    public function getQuestions(){
+        $questions = Question::get();
+        $questionsData = [];
+        array_push($questionsData, [
+            'libelle' => 'Votre adresse mail',
+            'type' => 'B',
+            'nth' => 1,
+        ]);
+        foreach ($questions as $question) {
+            array_push($questionsData, [
+                'libelle' => $question->libelle,
+                'type' => $question->type,
+                'nth' => ($question->id + 1),
+            ]);
+        }
+        return view('admin.questions', ['questions' => $questionsData]);
+    }
+
+    public function getAnswers(){
+        return view('admin.answers', []);
+    }
 }

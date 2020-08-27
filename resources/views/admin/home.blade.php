@@ -13,19 +13,20 @@ BigScreen - Administration
 @endpush
 
 @section('content')
-
     <main>
-        <div class="graph">
-            <canvas id="pie-6" ></canvas>
-        </div>
-        <div class="graph">
-            <canvas id="pie-7"></canvas>
-        </div>
-        <div class="graph">
-            <canvas id="pie-10"></canvas>
-        </div>
-        <div class="graph">
-            <canvas id="radar"></canvas>
+        <div>
+            <div class="graph">
+                <canvas id="pie-6" ></canvas>
+            </div>
+            <div class="graph">
+                <canvas id="pie-7"></canvas>
+            </div>
+            <div class="graph">
+                <canvas id="pie-10"></canvas>
+            </div>
+            <div class="graph">
+                <canvas id="radar"></canvas>
+            </div>
         </div>
     </main>
 

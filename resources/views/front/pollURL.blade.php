@@ -18,7 +18,7 @@ BigScreen - Questionnaire
                     Si vous désirez consulter vos réponse ultérieurement, vous pouvez consultez
                     cette adresse:
                 </p>
-                <a href="http://localhost:3000/poll/{{$poll_url}}">http://localhost:3000/poll/{{$poll_url}}</a>
+                <a href="http:{{url("poll/".$poll_url)}}">http:{{url("poll/".$poll_url)}}</a>
             </div>
         </div>
         

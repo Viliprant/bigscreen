@@ -1,8 +1,6 @@
 // console.log(graphData);
 import Chart from 'chart.js';
 
-console.log(graphData[3])
-
 const pie6 = document.getElementById('pie-6').getContext('2d')
 const pie7 = document.getElementById('pie-7').getContext('2d')
 const pie10 = document.getElementById('pie-10').getContext('2d')
