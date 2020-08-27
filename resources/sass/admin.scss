@@ -19,8 +19,8 @@ body{
     }
     #sidebar{
         flex: 0 0;
+        padding-top: 8rem;
         font-size: 18px;
-        padding: 0 3rem;
         height: 100vh;
         background-color: #474c55;
         display: flex;
@@ -29,11 +29,13 @@ body{
         top: 0;
         position: sticky;
         position: -webkit-sticky;
+        a{
+            padding: 0 3rem;
+        }
         > * + *{
             margin-top: 1rem;
         }
         img{
-            margin-top: 50%;
             width: 80%;
             margin-bottom: 1rem;
         }
