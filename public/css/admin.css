@@ -20,10 +20,9 @@ body a {
 }
 
 body #sidebar {
-  font-size: 20px;
-  width: 30%;
-  min-width: 200px;
-  max-width: 300px;
+  flex: 0 0;
+  font-size: 18px;
+  padding: 0 3rem;
   height: 100vh;
   background-color: #474c55;
   display: flex;
@@ -47,11 +46,18 @@ body #sidebar img {
 body main {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(2, 50%);
   padding: 1rem;
 }
 
 body main .graph {
   border: 1px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+body main .graph > canvas {
+  height: 100%;
 }
 

@@ -9,16 +9,24 @@ BigScreen - Administration
 <script>   
     let graphData = {!! json_encode($graphData) !!};
 </script>
-<script src="{{ asset('js/chart.js')}}">console.log('test')</script>
+<script src="{{ asset('js/chart.js')}}" defer></script>
 @endpush
 
 @section('content')
 
     <main>
-       <div class="graph"></div>
-       <div class="graph"></div>
-       <div class="graph"></div>
-       <div class="graph"></div>
+        <div class="graph">
+            <canvas id="pie-6" ></canvas>
+        </div>
+        <div class="graph">
+            <canvas id="pie-7"></canvas>
+        </div>
+        <div class="graph">
+            <canvas id="pie-10"></canvas>
+        </div>
+        <div class="graph">
+            <canvas id="radar"></canvas>
+        </div>
     </main>
 
 @endsection
