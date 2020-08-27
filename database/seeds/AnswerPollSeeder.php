@@ -12,7 +12,7 @@ class AnswerPollSeeder extends Seeder
     public function run()
     {
         factory(App\Poll::class, 5)->create(); // création sans réponses
-        factory(App\Poll::class, 5)->create()->each(function($poll){
+        factory(App\Poll::class, 15)->create()->each(function($poll){
             $faker = \Faker\Factory::create();
             $questions = App\Question::all();
 

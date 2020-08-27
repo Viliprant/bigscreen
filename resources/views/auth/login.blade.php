@@ -7,7 +7,7 @@
             <form method="POST" action="{{ route('login') }}">
                 @csrf
 
-                <img src="{{asset('img/bigscreen_logo.png')}}" alt="bigscreen logo">
+                <a href="{{route('front_poll')}}"><img src="{{asset('img/bigscreen_logo.png')}}" alt="bigscreen logo"></a>
 
                 <div class="form-group row">
                     <label for="email">{{ __('E-Mail Address:') }}</label>
