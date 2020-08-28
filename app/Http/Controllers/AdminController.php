@@ -79,12 +79,12 @@ class AdminController extends Controller
     }
     private function getStatFromIdQuestionForRadarChart(array $questions, string $libelle){
         $stats = [];
-        $total = Poll::where('status', true)->count();
+        $total = Poll::where('status', true)->count(); // Total de formulaires remplis
         foreach ($questions as $question) {
             $count = 0;
             $answers = Answer::where('question_id', $question['id'])->get();
             foreach ($answers as $answer) {
-                $count += $answer->libelle;
+                $count += $answer->libelle; // On additionne les points de tous les formulaires pour chaque question
             }
             $count = round( ($count / count($answers) ), 2 ); // MOYENNE
             $result = [
