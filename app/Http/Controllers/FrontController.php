@@ -6,6 +6,7 @@ use Validator;
 use Illuminate\Http\Request;
 
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 use App\Question;
 use App\Poll;
@@ -63,8 +64,8 @@ class FrontController extends Controller
         }
     }
 
-    public function addPoll(Request $request){
-
+    public function addPoll(Request $request)
+    {
         $questions = Question::all();
         $requirements = [];
         foreach ($questions as $key => $answerValue) {
@@ -109,7 +110,7 @@ class FrontController extends Controller
             $newAnswer->save();
             array_push( $Answers, $newAnswer->id);
         }
-        $poll->answers()->attach( array_merge($Answers));
+        $poll->answers()->attach( $Answers );
         $poll->status = true;
         $poll->save();
 
