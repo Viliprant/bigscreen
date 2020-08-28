@@ -1,4 +1,3 @@
-// console.log(graphData);
 import Chart from 'chart.js';
 
 const pie6 = document.getElementById('pie-6').getContext('2d')
@@ -56,7 +55,6 @@ const pieChart6 = new Chart(
     options: {
         legend: {
             labels: {
-                // This more specific font property overrides the global property
                 fontColor: 'white'
             },
         },
@@ -76,7 +74,6 @@ const pieChart7 = new Chart(
     options: {
         legend: {
             labels: {
-                // This more specific font property overrides the global property
                 fontColor: 'white'
             },
         },
@@ -96,7 +93,6 @@ const pieChart10 = new Chart(
     options: {
         legend: {
             labels: {
-                // This more specific font property overrides the global property
                 fontColor: 'white'
             },
         },

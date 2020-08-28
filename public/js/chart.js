@@ -37483,7 +37483,6 @@ module.exports = function(module) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/Chart.js");
 /* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(chart_js__WEBPACK_IMPORTED_MODULE_0__);
-// console.log(graphData);
 
 var pie6 = document.getElementById('pie-6').getContext('2d');
 var pie7 = document.getElementById('pie-7').getContext('2d');
@@ -37536,7 +37535,6 @@ var pieChart6 = new chart_js__WEBPACK_IMPORTED_MODULE_0___default.a(pie6, {
   options: {
     legend: {
       labels: {
-        // This more specific font property overrides the global property
         fontColor: 'white'
       }
     },
@@ -37555,7 +37553,6 @@ var pieChart7 = new chart_js__WEBPACK_IMPORTED_MODULE_0___default.a(pie7, {
   options: {
     legend: {
       labels: {
-        // This more specific font property overrides the global property
         fontColor: 'white'
       }
     },
@@ -37574,7 +37571,6 @@ var pieChart10 = new chart_js__WEBPACK_IMPORTED_MODULE_0___default.a(pie10, {
   options: {
     legend: {
       labels: {
-        // This more specific font property overrides the global property
         fontColor: 'white'
       }
     },
