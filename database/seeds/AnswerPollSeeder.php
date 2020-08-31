@@ -23,27 +23,30 @@ class AnswerPollSeeder extends Seeder
                         $libelle = $choices[rand(0, count($choices) - 1)];
                         $newAnswer = App\Answer::create([
                             'libelle' => $libelle,
-                            'question_id' => $question->id
+                            'question_id' => $question->id,
+                            'poll_id' => $poll->id,
                         ]);
                         break;
                     case 'B':
                         $randomAnswer = $faker->sentence($nbWords = 6, $variableNbWords = true);
                         $newAnswer = App\Answer::create([
                             'libelle' => $randomAnswer,
-                            'question_id' => $question->id
+                            'question_id' => $question->id,
+                            'poll_id' => $poll->id,
                         ]);
                         break;
                     case 'C':
                         $randomNumber = rand(1, 5);
                         $newAnswer = App\Answer::create([
                             'libelle' => $randomNumber,
-                            'question_id' => $question->id
+                            'question_id' => $question->id,
+                            'poll_id' => $poll->id,
                         ]);
                         break;
                     default:
                         break;
                 }
-                $poll->answers()->attach($newAnswer->id);
+                $newAnswer->save();
             }
 
             // On valide le poll

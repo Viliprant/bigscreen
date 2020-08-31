@@ -22,6 +22,11 @@ class CreateAnswersTable extends Migration
             ->nullable()
             ->constrained()
             ->onDelete('SET NULL');
+
+            $table->foreignId('poll_id')
+            ->nullable()
+            ->constrained()
+            ->onDelete('SET NULL');
         });
     }
 

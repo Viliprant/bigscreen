@@ -106,11 +106,11 @@ class FrontController extends Controller
             $newAnswer = Answer::create([
                 'libelle' => $request["Q" . $question['id']],
                 'question_id' => $question->id,
+                'poll_id' => $poll->id,
             ]);
             $newAnswer->save();
             array_push( $Answers, $newAnswer->id);
         }
-        $poll->answers()->attach( $Answers );
         $poll->status = true;
         $poll->save();
 

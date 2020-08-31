@@ -9,6 +9,7 @@ class Answer extends Model
     protected $fillable = [
         'libelle',
         'question_id',
+        'poll_id',
     ];
     public $timestamps = false;
 
@@ -16,8 +17,8 @@ class Answer extends Model
 
         return $this->belongsTo(Question::class);
     }
-    public function polls(){
+    public function poll(){
 
-        return $this->belongsToMany(Poll::class);
+        return $this->belongsTo(Poll::class);
     }
 }
