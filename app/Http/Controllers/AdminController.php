@@ -63,7 +63,7 @@ class AdminController extends Controller
         $question = Question::with("answers")->where('id', $id)->first();
         $stats = [];
         foreach (json_decode($question->choices) as $choice) {
-            $count = $question->answers()->where([['question_id', $question->id],['libelle', $choice]])->count();
+            $count = $question->answers()->where('libelle', $choice)->count();
             $statChoice = [
                 'libelle' => $choice,
                 'count' => $count,
