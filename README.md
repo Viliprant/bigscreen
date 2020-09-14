@@ -29,7 +29,7 @@ Utilisez les commandes suivantes dans votre terminal :
 <br>
 **Le serveur php** :
 ```
-php artisan serve (serveur php)
+php artisan serve
 ```
 Si vous souhaitez un **rechargement automatique de la page** pour des modifications :
 ```
@@ -40,7 +40,7 @@ npm run watch
 ### Partie public
 * **Formulaire**, accessible à la racine du site.<br>
 *Choisir une adresse mail présent dans la base de données dont le status est égale à 0.*
-* **Réponses**, accessible via l'url présente dans la base de données dans la table **poll** (http://localhost/poll/**URL**).<br>
+* **Réponses**, accessible via l'url présente dans la base de données dans la table **poll** (http://localhost/poll/ **URL**).<br>
 *Le statut doit être égale à 1.*
 
 ### Partie administration
